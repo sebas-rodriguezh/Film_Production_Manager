@@ -35,7 +35,7 @@ int main() {
 		while (cin.fail()) {
 			cin.clear();
 			cin.ignore(1000, '\n');
-			cout << "Entrada invalida. Intente de nuevo: ";
+			cout << "Entrada invalida. Intente de nuevo: "; //excepcion
 			cin >> opcionMenu;
 		} //Esto valida por si meten strings en lugar de numeros. 
 
@@ -75,7 +75,7 @@ int main() {
 					system("cls");
 				}
 				else {
-					cout << "No se ingreso al sistema, ID repetido. " << endl;
+					cout << "No se ingreso al sistema, ID repetido. " << endl; //excepcion 
 					system("pause");
 					system("cls");
 					delete personalAInsertar;
@@ -105,7 +105,7 @@ int main() {
 					system("cls");
 				}
 				else {
-					cout << "No se ingreso al sistema, ID repetido. " << endl;
+					cout << "No se ingreso al sistema, ID repetido. " << endl; //excepcion
 					system("pause");
 					system("cls");
 					delete personalAInsertar;
@@ -138,7 +138,7 @@ int main() {
 					system("cls");
 				}
 				else {
-					cout << "No se ingreso al sistema, ID repetido. " << endl;
+					cout << "No se ingreso al sistema, ID repetido. " << endl; //same excepction nigg
 					system("pause");
 					system("cls");
 					delete personalAInsertar;
@@ -148,7 +148,7 @@ int main() {
 			break;
 
 			default:
-				cout << "opcionMenu invalida. Intente de nuevo.\n";
+				cout << "opcionMenu invalida. Intente de nuevo.\n"; //excpecion
 				system("pause");
 				system("cls");
 				break;
@@ -167,7 +167,7 @@ int main() {
 			//Excepcion. 
 			if (studioArt->getPersonal()->mostrarTodoElPersonal().empty())
 			{
-				cout << "Error: No hay personal que pueda trabajar en la pelicula. " << endl;
+				cout << "Error: No hay personal que pueda trabajar en la pelicula. " << endl; //excepcion
 				system("pause");
 				system("cls");
 				break;
@@ -188,7 +188,7 @@ int main() {
 
 			}
 			else {
-				cout << "No se ingreso al sistema, ID repetido. " << endl;
+				cout << "No se ingreso al sistema, ID repetido. " << endl; //excepcion
 				system("pause");
 				system("cls");
 				delete peliculaAInsertar;
@@ -205,7 +205,7 @@ int main() {
 
 			if (studioArt->getPeliculas()->mostrarPeliculasQueTienesPersonalAsignado().empty())
 			{
-				cout << "Error: No hay ninguna pelicula con personal asignado. " << endl;
+				cout << "Error: No hay ninguna pelicula con personal asignado. " << endl; //excpecion
 				system("pause");
 				system("cls");
 				break;
@@ -222,7 +222,7 @@ int main() {
 			system("cls");
 
 			if (!peliSeleccionada) {
-				cout << "Error: No existe ninguna pelicula con ese ID. " << endl;
+				cout << "Error: No existe ninguna pelicula con ese ID. " << endl; //excpecion
 				system("pause");
 				system("cls");
 				break;
@@ -236,7 +236,7 @@ int main() {
 			Personal* personalSeleccionado = studioArt->getPersonalPorID(idPersona);
 
 			if (!personalSeleccionado) {
-				cout << "Error: No existe ninguna trabajador con ese ID. " << endl;
+				cout << "Error: No existe ninguna trabajador con ese ID. " << endl;//excpecion
 				system("pause");
 				system("cls");
 				break;
@@ -266,7 +266,7 @@ int main() {
 
 			if (studioArt->getPersonal()->mostrarTodoElPersonal().empty() || studioArt->getPeliculas()->mostrarTodasLasPeliculas().empty())
 			{
-				cout << "Error: No hay suficientes datos para registrar una tarea. " << endl;
+				cout << "Error: No hay suficientes datos para registrar una tarea. " << endl;//excpecion
 				system("pause");
 				system("cls");
 				break;
@@ -281,7 +281,7 @@ int main() {
 			Pelicula* peliSeleccionada = studioArt->getPeliculaPorID(idPelicula);
 
 			if (!peliSeleccionada) {
-				cout << "Error: No existe ninguna pelicula con ese ID. " << endl;
+				cout << "Error: No existe ninguna pelicula con ese ID. " << endl; //excpecion
 				system("pause");
 				system("cls");
 				break;
@@ -296,7 +296,7 @@ int main() {
 			Personal* personalSeleccionado = studioArt->getPersonalPorID(idPersona);
 
 			if (!personalSeleccionado) {
-				cout << "Error: No existe ninguna trabajador con ese ID. " << endl;
+				cout << "Error: No existe ninguna trabajador con ese ID. " << endl; //excpecion
 				system("pause");
 				system("cls");
 				break;
@@ -316,7 +316,7 @@ int main() {
 			cin.ignore();
 			if (studioArt->getPeliculas()->mostrarPeliculasConTareasAsignadas().empty())
 			{
-				cout << "Error: No hay peliculas que tengan tareas pendientes. " << endl;
+				cout << "Error: No hay peliculas que tengan tareas pendientes. " << endl; //excpecion
 				system("pause");
 				system("cls");
 				break;
@@ -331,7 +331,7 @@ int main() {
 			Pelicula* peliSeleccionada = studioArt->getPeliculaPorID(idPelicula);
 
 			if (!peliSeleccionada) {
-				cout << "Error: No existe ninguna pelicula con ese ID. " << endl;
+				cout << "Error: No existe ninguna pelicula con ese ID. " << endl; //excpecion 
 				break;
 			}
 			system("pause");
@@ -354,7 +354,7 @@ int main() {
 				system("pause");
 			}
 			else {
-				cout << "No se encontro la tarea con el ID: " << idTarea << endl;
+				cout << "No se encontro la tarea con el ID: " << idTarea << endl; //excpecion
 				system("pause");
 			}
 		}
