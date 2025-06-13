@@ -9,16 +9,38 @@ void PersistenciaDeDatos::guardarPersonal(ListaPersonal* personal)
 		Personal* p = trabajador->getDato();
 		string tipo;
 
-		if (dynamic_cast<Artista*>(p)) tipo = "Artista"; 
-		else if (dynamic_cast<IngenieroSonido*>(p)) tipo = "IngenieroSonido"; 
-		else if (dynamic_cast<Productor*>(p)) tipo = "Productor"; 
-		else tipo = "Desconocido";
-
-		archivoPersonal << tipo << ";"                   
-			<< p->getNombre() << ";"
-			<< p->getId() << ";"
-			<< p->getEmail() << ";"
-			<< p->getEspecialidad() << "\n";
+		if (Artista* aux = dynamic_cast<Artista*>(p))
+		{
+			tipo = "Artista";
+			archivoPersonal << tipo << ";"
+				<< aux->getNombre() << ";"
+				<< aux->getId() << ";"
+				<< aux->getEmail() << ";"
+				<< aux->getEspecialidad() << ";"
+				<< aux->getHerramientasDeDibujo() << "\n";
+		}
+		else if (IngenieroSonido* aux = dynamic_cast<IngenieroSonido*>(p))
+		{
+			tipo = "IngenieroSonido";
+			archivoPersonal << tipo << ";"
+				<< aux->getNombre() << ";"
+				<< aux->getId() << ";"
+				<< aux->getEmail() << ";"
+				<< aux->getEspecialidad() << ";"
+				<< aux->getAnniosExperiencia() << ";"
+				<< aux->getExperienciaEnMezcla() << "\n";
+		}
+		else if (Productor* aux = dynamic_cast<Productor*>(p))
+		{
+			tipo = "Productor";
+			archivoPersonal << tipo << ";"
+				<< aux->getNombre() << ";"
+				<< aux->getId() << ";"
+				<< aux->getEmail() << ";"
+				<< aux->getEspecialidad() << ";"
+				<< aux->getCronograma() << ";"
+				<< aux->getPresupuesto() << "\n";
+		}
 
 		trabajador = trabajador->getSiguiente();
 	}
@@ -44,22 +66,35 @@ ListaPersonal* PersistenciaDeDatos::cargarPersonal()
 		Personal* p = nullptr;
 
 		if (tipo == "Artista") {
-			p = new Artista(nombre, id, email, especialidad);
+			string herramientas;
+			getline(ss, herramientas, '\n');
+			p = new Artista(nombre, id, email, especialidad, herramientas);
 		}
 		else if (tipo == "IngenieroSonido") {
-			p = new IngenieroSonido(nombre, id, email, especialidad);
+
+			string annosExpStr, expMezcla;
+			getline(ss, annosExpStr, ';');
+			getline(ss, expMezcla, '\n');
+			int annosExp = stoi(annosExpStr);
+			p = new IngenieroSonido(nombre, id, email, especialidad, annosExp, expMezcla);
 		}
 		else if (tipo == "Productor") {
-			p = new Productor(nombre, id, email, especialidad);
-		}
-		
 
-		lista->insertarPersonal(p);
+			string cronograma, presupuestoStr;
+			getline(ss, cronograma, ';');
+			getline(ss, presupuestoStr, '\n');
+			double presupuesto = stod(presupuestoStr);
+			p = new Productor(nombre, id, email, especialidad, presupuesto, cronograma);
+		}
+
+		if (p != nullptr)
+			lista->insertarPersonal(p);
 	}
 
 	archivo.close();
 	return lista;
-} 
+}
+
 
 void PersistenciaDeDatos::guardarPeliculas(ListaPeliculas* peliculas)
 {

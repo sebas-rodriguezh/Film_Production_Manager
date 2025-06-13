@@ -11,6 +11,10 @@ Pelicula::~Pelicula() {
 }
 
 void Pelicula::agregarPersonal(Personal* p) {
+
+    if (Personal* perAux = this->getPersonalPorID(p->getId())) {
+		return; // Si ya existe un personal con el mismo ID, no lo agregamos de nuevo.
+    }
     personal->agregar(p);
 }
 

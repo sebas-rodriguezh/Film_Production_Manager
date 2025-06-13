@@ -1,4 +1,3 @@
-Artista;Bryan;119510334;bryan@gmail.com;Pintor
-Artista;Alejandro;1;1;1
-IngenieroSonido;Sebas;2;2;2
-Productor;Palma;3;3;3
+Artista;Elias;1111;eliasAikledi@gmail.com;Artes;Pintura
+IngenieroSonido;Maria;2222;mareiow@gmail.com;Mezcla;5;DJSoundGresh
+Productor;Karla;3333;karlaiodenml@gmial.com;Costos;Martes - Sabado;4785
