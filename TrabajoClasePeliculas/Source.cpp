@@ -7,6 +7,7 @@
 #include "Productor.h"
 #include "Excepciones.h" 
 #include "ExcepcionStudio.h"
+#include "PersistenciaDeDatos.h"
 using namespace std; 
 
 void funcionPruebaConStategys();
@@ -16,6 +17,7 @@ int main()
 {
 	try {
 		Studio* studioArt = new Studio();
+		PersistenciaDeDatos* persistencia = new PersistenciaDeDatos(); 
 
 		int opcionMenu = 0;
 
@@ -30,8 +32,9 @@ int main()
 			cout << "5. Marcar tareas como completadas.\n";
 			cout << "6. Mostrar TODO el personal del sistema.\n";
 			cout << "7. Mostrar TODAS las peliculas del sistema.\n";
-			cout << "8. Cargar datos desde archivos.\n";
-			cout << "9. Salir.\n" << endl;
+			cout << "8. Guardar datos desde archivos.\n";
+			cout << "9  Cargar datos desde archivos.\n";
+			cout << "10. Salir.\n" << endl;
 			cout << "Seleccione una opcion: ";
 			cin >> opcionMenu;
 
@@ -432,7 +435,28 @@ int main()
 
 			case 8:
 			{
-				cout << "8. Cargar datos desde archivos.\n";
+				cout << "8. Guardar datos desde archivos.\n";
+				persistencia->guardarPersonal(studioArt->getPersonal());
+				persistencia->guardarPeliculas(studioArt->getPeliculas());
+				persistencia->guardarPersonalPorPelicula(studioArt->getPeliculas());
+				persistencia->guardarTareas(studioArt->getPeliculas());
+				cout << "Datos guardados existosamente. " << endl;
+
+				system("pause");
+				system("cls");
+			
+			}
+			break;
+			case 9:
+			{
+				cout << "9. Cargar datos desde archivos.\n";
+				studioArt->setPersonal(persistencia->cargarPersonal()); 
+				studioArt->setPeliculas(persistencia->cargarPeliculas()); 
+				persistencia->cargarPersonalPorPelicula(studioArt->getPeliculas(), studioArt->getPersonal());
+				persistencia->cargarTareas(studioArt->getPeliculas());
+
+				cout << "Datos cargados exitosamente."<<endl; 
+
 				system("pause");
 				system("cls");
 			}
@@ -445,7 +469,7 @@ int main()
 				system("cls");
 				break;
 			}
-		} while (opcionMenu != 9);
+		} while (opcionMenu != 10);
 
 
 	}catch (const ExcepcionStudio& ex) { 

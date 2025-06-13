@@ -20,5 +20,5 @@ public:
      void cargarPersonalPorPelicula(ListaPeliculas* peliculas, ListaPersonal* personal);
 };
 
-};
+
 
