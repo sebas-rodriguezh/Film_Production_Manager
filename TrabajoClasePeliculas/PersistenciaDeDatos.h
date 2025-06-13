@@ -2,6 +2,8 @@
 #include "Studio.h"
 #include "GestorRecursos.h"
 #include <fstream> 
+#include "IngenieroSonido.h"
+#include "Artista.h"
 
 class PersistenciaDeDatos
 {

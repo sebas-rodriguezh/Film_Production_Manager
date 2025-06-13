@@ -1,2 +1,4 @@
-2;2;2;2
-1;1;1;1
+Artista;Bryan;119510334;bryan@gmail.com;Pintor
+Artista;Alejandro;1;1;1
+IngenieroSonido;Sebas;2;2;2
+Productor;Palma;3;3;3

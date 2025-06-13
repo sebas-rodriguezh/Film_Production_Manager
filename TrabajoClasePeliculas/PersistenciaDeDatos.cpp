@@ -5,11 +5,21 @@ void PersistenciaDeDatos::guardarPersonal(ListaPersonal* personal)
 {
 	ofstream archivoPersonal("Personal.txt");
 	Nodo<Personal>* trabajador = personal->getPtrPersonal()->getCabeza();
-	while (trabajador!=nullptr) {
-		archivoPersonal << trabajador->getDato()->getNombre() << ";"
-			<< trabajador->getDato()->getId() << ";"
-			<< trabajador->getDato()->getEmail() << ";"
-			<< trabajador->getDato()->getEspecialidad() << "\n";
+	while (trabajador != nullptr) {
+		Personal* p = trabajador->getDato();
+		string tipo;
+
+		if (dynamic_cast<Artista*>(p)) tipo = "Artista"; 
+		else if (dynamic_cast<IngenieroSonido*>(p)) tipo = "IngenieroSonido"; 
+		else if (dynamic_cast<Productor*>(p)) tipo = "Productor"; 
+		else tipo = "Desconocido";
+
+		archivoPersonal << tipo << ";"                   
+			<< p->getNombre() << ";"
+			<< p->getId() << ";"
+			<< p->getEmail() << ";"
+			<< p->getEspecialidad() << "\n";
+
 		trabajador = trabajador->getSiguiente();
 	}
 	archivoPersonal.close();
@@ -17,30 +27,38 @@ void PersistenciaDeDatos::guardarPersonal(ListaPersonal* personal)
 
 ListaPersonal* PersistenciaDeDatos::cargarPersonal()
 {
-	ifstream archivo("Personal.txt"); 
-	if (!archivo.is_open()) {
-		cout << "Error al abrir archivo Personal.txt\n"; 
-		return new ListaPersonal(); 
-	} 
-	ListaPersonal* lista = new ListaPersonal(); 
-	string linea; 
+	ifstream archivo("Personal.txt");
+	ListaPersonal* lista = new ListaPersonal();
+	string linea;
 
-	while (getline(archivo, linea)) { 
-		stringstream ss(linea); 
-		string id, nombre, email, especialidad; 
+	while (getline(archivo, linea)) {
+		stringstream ss(linea);
+		string tipo, nombre, id, email, especialidad;
 
+		getline(ss, tipo, ';');
 		getline(ss, nombre, ';');
-		getline(ss, id, ';'); 
-		getline(ss, email, ';'); 
-		getline(ss, especialidad, ';'); 
+		getline(ss, id, ';');
+		getline(ss, email, ';');
+		getline(ss, especialidad, ';');
 
+		Personal* p = nullptr;
+
+		if (tipo == "Artista") {
+			p = new Artista(nombre, id, email, especialidad);
+		}
+		else if (tipo == "IngenieroSonido") {
+			p = new IngenieroSonido(nombre, id, email, especialidad);
+		}
+		else if (tipo == "Productor") {
+			p = new Productor(nombre, id, email, especialidad);
+		}
 		
-		Personal* p = new Productor (nombre, id, email, especialidad);    
-		lista->insertarPersonal(p); 
+
+		lista->insertarPersonal(p);
 	}
 
-	archivo.close(); 
-	return lista; 
+	archivo.close();
+	return lista;
 } 
 
 void PersistenciaDeDatos::guardarPeliculas(ListaPeliculas* peliculas)
