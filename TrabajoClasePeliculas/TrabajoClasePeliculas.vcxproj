@@ -136,6 +136,7 @@
     <ClInclude Include="ListaPersonal.h" />
     <ClInclude Include="Nodo.h" />
     <ClInclude Include="Pelicula.h" />
+    <ClInclude Include="PersistenciaDeDatos.h" />
     <ClInclude Include="Personal.h" />
     <ClInclude Include="Productor.h" />
     <ClInclude Include="Studio.h" />
@@ -152,6 +153,7 @@
     <ClCompile Include="ListaPeliculas.cpp" />
     <ClCompile Include="ListaPersonal.cpp" />
     <ClCompile Include="Pelicula.cpp" />
+    <ClCompile Include="PersistenciaDeDatos.cpp" />
     <ClCompile Include="Personal.cpp" />
     <ClCompile Include="Productor.cpp" />
     <ClCompile Include="Source.cpp" />
